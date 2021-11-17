@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Sitecore>
+    <IdentityServer>
+      <IdentityResources>
+        <SitecoreIdentityResource>
+          <UserClaims>
+            <UserClaim6>groups</UserClaim6>
+          </UserClaims>
+        </SitecoreIdentityResource>
+      </IdentityResources>
+    </IdentityServer>
+    <ExternalIdentityProviders>
+      <IdentityProviders>
+        <Okta type="Sitecore.Plugin.IdentityProviders.IdentityProvider, Sitecore.Plugin.IdentityProviders">
+          <AuthenticationScheme>IdS4-Okta</AuthenticationScheme>
+          <DisplayName>$(env:OktaDisplayname)</DisplayName>
+          <Enabled>true</Enabled>
+          <ClientId>$(env:OktaClientId)</ClientId>
+          <ClientSecret>$(env:OktaClientSecret)</ClientSecret>
+          <Authority>$(env:OktaAuthority)</Authority>
+			<!-- OKTA Reserved Scopes https://developer.okta.com/docs/reference/api/oidc/#reserved-scopes 
+			openid, profile, email, address, phone, offline_access, groups
+			-->
+	        <Scopes>$(env:OktaScope)</Scopes>
+	        <ClaimsTransformations>
+            <!--Place transformation rules here. -->
+            <ClaimsTransformation1 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+              <SourceClaims>
+                <Claim1 type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn" />
+              </SourceClaims>
+              <NewClaims>
+                <Claim1 type="email" />
+              </NewClaims>
+            </ClaimsTransformation1>
+            <ClaimsTransformation2 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+              <SourceClaims>
+                <Claim1 type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" />
+              </SourceClaims>
+              <NewClaims>
+                <Claim1 type="email" />
+              </NewClaims>
+            </ClaimsTransformation2>
+            <ClaimsTransformation3 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+	            <SourceClaims>
+		            <Claim1 type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" />
+	            </SourceClaims>
+	            <NewClaims>
+		            <Claim1 type="name" />
+	            </NewClaims>
+            </ClaimsTransformation3>
+            <ClaimsTransformation4 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+              <SourceClaims>
+                <Claim1 type="groups" value="Sitecore System Administrator" />
+              </SourceClaims>
+              <NewClaims>
+                <Claim1 type="http://www.sitecore.net/identity/claims/isAdmin" value="true" />
+              </NewClaims>
+            </ClaimsTransformation4>
+            <ClaimsTransformation5 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+	            <SourceClaims>
+		            <Claim1 type="groups" value="Sitecore Content Administrator" />
+	            </SourceClaims>
+	            <NewClaims>
+		            <Claim1 type="role" value="sitecore\Sitecore Design Content Administrator" />
+	            </NewClaims>
+            </ClaimsTransformation5>
+            <ClaimsTransformation6 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+	            <SourceClaims>
+		            <Claim1 type="groups" value="Sitecore Super Author" />
+	            </SourceClaims>
+	            <NewClaims>
+		            <Claim1 type="role" value="sitecore\Sitecore Design Content Manager" />
+	            </NewClaims>
+            </ClaimsTransformation6>
+            <ClaimsTransformation7 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+	            <SourceClaims>
+		            <Claim1 type="groups" value="Sitecore Author" />
+	            </SourceClaims>
+	            <NewClaims>
+		            <Claim1 type="role" value="sitecore\Sitecore Design Content Author" />
+	            </NewClaims>
+            </ClaimsTransformation7>
+            <ClaimsTransformation8 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+	            <SourceClaims>
+		            <Claim1 type="groups" value="Sitecore Editor" />
+	            </SourceClaims>
+	            <NewClaims>
+		            <Claim1 type="role" value="sitecore\Sitecore Design Content Editor" />
+	            </NewClaims>
+            </ClaimsTransformation8>
+            <ClaimsTransformation9 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+	            <SourceClaims>
+		            <Claim1 type="groups" value="Sitecore SME Content Approvers" />
+	            </SourceClaims>
+	            <NewClaims>
+		            <Claim1 type="role" value="sitecore\Sitecore Design Content Approver" />
+	            </NewClaims>
+            </ClaimsTransformation9>
+          </ClaimsTransformations>
+        </Okta>
+      </IdentityProviders>
+    </ExternalIdentityProviders>
+  </Sitecore>
+</Settings>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Sdk Name="Sitecore.Framework.Runtime.Build" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="sitecoreruntime\Production\config\SitecoreDesign.IdentityServer.SecurityHardening.xml" />
+    <None Remove="sitecore\Sitecore.Plugin.IdentityProviders.Okta\Config\Sitecore.Plugin.IdentityProviders.Okta.xml" />
+    <None Remove="sitecore\Sitecore.Plugin.IdentityProviders.Okta\Sitecore.Plugin.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecoreruntime\Production\config\SitecoreDesign.IdentityServer.SecurityHardening.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitecore\Sitecore.Plugin.IdentityProviders.Okta\Config\Sitecore.Plugin.IdentityProviders.Okta.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitecore\Sitecore.Plugin.IdentityProviders.Okta\Sitecore.Plugin.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Sitecore.Framework.Runtime.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Sitecore.Framework.Runtime.Build" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Sitecore.Framework.Runtime.Commands" Version="5.0.0" />
+    <PackageReference Include="Sitecore.Plugin.IdentityServer" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sitecore\Sitecore.Plugin.IdentityProviders.Okta\Config\Sitecore.Plugin.IdentityProviders.Okta.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+</Project>

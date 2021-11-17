@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+    <Sitecore xmlns:patch="http://www.sitecore.net/xmlconfig/">
+        <IdentityServer>
+            <AccountOptions>
+                <AllowRememberLogin>false</AllowRememberLogin>
+            </AccountOptions>
+        </IdentityServer>
+    </Sitecore>
+</Settings>
